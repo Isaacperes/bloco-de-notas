@@ -1,0 +1,42 @@
+{% extends '_template.html' %}
+
+{% block conteudo %}
+
+<h2>Editando Anotações</h2>
+
+<p>Os dados das suas Anotações estão listados abaixo. Altere somente os campos necessários.</p>
+
+<form action="/edita/{{ item.t_id }}" method="post" id="formEdita">
+
+
+    <p>
+        <label for="nome">
+            Nome:
+            <span class="field-help" title="Nome que identifica a anotação."><i class="fa-solid fa-circle-question"></i></span>
+        </label>
+        <input type="text" name="nome" id="nome" required minlength="3" value="{{ item.t_nome }}">
+    </p>
+
+    <p>
+        <label for="anotação">
+            anotação:
+            <span class="field-help" title="anotação completa."><i class="fa-solid fa-circle-question"></i></span>
+        </label>
+        <textarea name="anotação" id="anotação" required minlength="5">{{ item.t_descricao }}</textarea>
+    </p>
+
+    <p>
+        <label for="localizacao">
+            Localização:
+            <span class="field-help" title="Onde a anotação está armazenada."><i class="fa-solid fa-circle-question"></i></span>
+        </label>
+        <input type="text" name="localizacao" id="localizacao" required minlength="2" value="{{ item.t_localizacao }}">
+    </p>
+
+    <p>
+        <button type="submit">Salvar</button>
+    </p>
+
+</form>
+
+{% endblock %}
