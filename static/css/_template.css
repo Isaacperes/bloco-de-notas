@@ -8,19 +8,19 @@
     --font-size: 16px;
 
     /* Cor de fundo do site */
-    --background-color: rgb(23, 64, 92);
+    --background-color: rgb(80, 0, 155);
 
     /* Cor 1 do tema */
-    --primary-color: steelblue;
+    --primary-color: rgb(132, 0, 255);
 
     /* Cor 2 do tema */
-    --secondary-color: orange;
+    --secondary-color: rgb(255, 0, 64);
 
     /* Cor 3 do tema */
     --tertiary-color: orangered;
 
     /* Cor de fundo das caixas*/
-    --box-background-color: white;
+    --box-background-color: rgb(255, 255, 255);
 
     /* Definição do logotipo */
     --logo-border: .8px black;
@@ -93,6 +93,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-style: italic;
 }
 
 #wrap>header i {
@@ -102,6 +103,13 @@ button {
     color: var(--secondary-color);
     -webkit-text-stroke: var(--logo-border);
     text-shadow: 2px 2px 5px grey;
+}
+
+#wrap>header img{
+    display: block;
+    margin-right: .5rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 #wrap>header h1 {
@@ -116,7 +124,7 @@ button {
 }
 
 #wrap>nav>a {
-    color: var(--primary-color);
+    color: rgba(139, 5, 248, 0.8);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,6 +187,9 @@ button {
 
 #wrap>main>h2:first-child {
     margin-top: 0;
+    font-style: italic;
+    color: rgba(139, 5, 248, 0.8);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 #wrap>footer {
@@ -251,7 +262,7 @@ button {
 }
 
 #wrap>main form:valid button[type=submit] {
-    background-color: steelblue;
+    background-color: rgb(255, 0, 255);
     pointer-events: all;
 }
 
@@ -300,6 +311,7 @@ button {
 .item div {
     padding: .5rem;
     flex-grow: 1;
+    font-style: italic;
 }
 
 .item h4 {
