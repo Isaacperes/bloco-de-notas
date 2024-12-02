@@ -5,8 +5,8 @@ def get_all_anotaçoes(mysql):
     # Obtém todos os registros válidos
 
     sql = '''
-        SELECT t_id, t_foto, t_nome, t_descricao, t_localizacao
-        FROM treco
+        SELECT t_id, t_nome, t_anotacao
+        FROM notas
         WHERE t_usuario = %s
             AND t_nome = 'on'
         ORDER BY t_anotacao DESC
@@ -23,19 +23,17 @@ def create_anotação(mysql, form):
     # Cadastra um novo registro no banco de dados
 
     sql = '''
-        INSERT INTO treco (
-            t_usuario, t_foto, t_nome, t_descricao, t_localizacao
+        INSERT INTO notas (
+            t_usuario, t_nome, t_anotacao
         ) VALUES (
-            %s, %s, %s, %s, %s
+            %s, %s, %s
         )
     '''
     cur = mysql.connection.cursor()
     cur.execute(sql, (
         g.usuario['id'],
-        form['foto'],
         form['nome'],
-        form['descricao'],
-        form['localizacao'],
+        form['anotacao'],
     ))
     mysql.connection.commit()
     cur.close()
@@ -47,7 +45,7 @@ def get_one_anotação(mysql, id):
     # Obtém um registro pelo id
 
     sql = '''
-        SELECT * FROM treco
+        SELECT * FROM notas
         WHERE t_id = %s
             AND t_usuario = %s
             AND t_status = 'on'
@@ -64,19 +62,15 @@ def update_anotação(mysql, form, id):
     # Salva atualização do registro
 
     sql = '''
-            UPDATE treco 
-            SET t_foto = %s,
-                t_nome = %s,
-                t_descricao = %s,
-                t_localizacao = %s
+            UPDATE notas 
+            SET t_nome = %s,
+                t_anotacao = %s
             WHERE t_id = %s
         '''
     cur = mysql.connection.cursor()
     cur.execute(sql, (
-        form['foto'],
         form['nome'],
-        form['descricao'],
-        form['localizacao'],
+        form['anotacao'],
         id,
     ))
     mysql.connection.commit()
@@ -92,7 +86,7 @@ def delete_anotação(mysql, id):
     # Apaga completamente o treco (CUIDADO!)
     # sql = 'DELETE FROM treco WHERE t_id = %s'
     # Altera o status do treco para 'del' (Mais seguro)
-    sql = "UPDATE treco SET t_status = 'del' WHERE t_id = %s"
+    sql = "UPDATE notas SET t_status = 'del' WHERE t_id = %s"
 
     # Executa o SQL
     cur = mysql.connection.cursor()
@@ -104,7 +98,7 @@ def delete_anotação(mysql, id):
 
 
 def get_count_user_anotações(mysql):
-    sql = "SELECT count(t_id) AS total FROM treco WHERE t_usuario = %s AND t_status = 'on'"
+    sql = "SELECT count(t_id) AS total FROM notas WHERE t_usuario = %s AND t_status = 'on'"
     cur = mysql.connection.cursor()
     cur.execute(sql, (g.usuario['id'],))
     row = cur.fetchone()

@@ -1,5 +1,5 @@
 from flask import abort, g, redirect, render_template, request, url_for
-from functions.db_anotacao import get_one_anotação, get_one_treco, update_treco
+from functions.db_anotacao import get_one_anotação, update_anotação
 
 
 def mod_edita(mysql, id):
@@ -12,13 +12,13 @@ def mod_edita(mysql, id):
     if request.method == 'POST':
         form = dict(request.form)
 
-        # print('\n\n\n FORM:', form, '\n\n\n')
+        print('\n\n\n FORM:', form, '\n\n\n')
 
         # Salva atualização do registro
-        update_treco(mysql=mysql, form=form, id=id)
+        update_anotação(mysql=mysql, form=form, id=id)
 
         # Após editar, retorna para a lista de itens
-        return redirect(url_for('index', a='editado'))
+        return redirect(url_for('home', a='editado'))
 
     # Obtém um registro pelo id
     row = get_one_anotação(mysql=mysql, id=id)
@@ -29,7 +29,7 @@ def mod_edita(mysql, id):
         abort(404)
 
     pagina = {
-        'titulo': 'CRUDTrecos',
+        'titulo': 'Bloco de Notas',
         'usuario': g.usuario,
         'item': row,
     }

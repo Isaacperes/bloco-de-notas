@@ -2,7 +2,7 @@
 
 from flask import g, redirect, url_for
 
-from functions.db_anotacao import delete_treco
+from functions.db_anotacao import delete_anotação
 
 
 def mod_apaga(mysql, id):
@@ -12,7 +12,7 @@ def mod_apaga(mysql, id):
         return redirect(url_for('login'))
 
     # Apaga registro
-    delete_treco(mysql=mysql, id=id)
+    delete_anotação(mysql=mysql, id=id)
 
     # Retorna para a lista de items
-    return redirect(url_for('index', a='apagado'))
+    return redirect(url_for('home', a='apagado'))

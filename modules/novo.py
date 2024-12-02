@@ -27,7 +27,7 @@ def mod_novo(mysql):
 
     # Dados, variáveis e valores a serem passados para o template HTML
     pagina = {
-        'titulo': 'Bloco de Notas - Novo Treco',
+        'titulo': 'Bloco de Notas - Nova nota',
         'usuario': g.usuario,
         'sucesso': sucesso,
     }

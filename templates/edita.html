@@ -18,20 +18,14 @@
     </p>
 
     <p>
-        <label for="anotação">
+        <label for="anotacao">
             anotação:
             <span class="field-help" title="anotação completa."><i class="fa-solid fa-circle-question"></i></span>
         </label>
-        <textarea name="anotação" id="anotação" required minlength="5">{{ item.t_descricao }}</textarea>
+        <textarea name="anotacao" id="anotacao" required minlength="5">{{ item.t_descricao }}</textarea>
     </p>
 
-    <p>
-        <label for="localizacao">
-            Localização:
-            <span class="field-help" title="Onde a anotação está armazenada."><i class="fa-solid fa-circle-question"></i></span>
-        </label>
-        <input type="text" name="localizacao" id="localizacao" required minlength="2" value="{{ item.t_localizacao }}">
-    </p>
+    
 
     <p>
         <button type="submit">Salvar</button>

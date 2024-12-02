@@ -1,3 +1,6 @@
+from flask import g
+
+
 def get_usuario(mysql, form):
 
     # Pesquisa se os dados existem no banco de dados → usuario
@@ -46,3 +49,52 @@ def save_new_password(mysql, novasenha, id):
     cur.close()
 
     return True
+
+def delete_user(mysql):
+    sql = "UPDATE usuario SET u_status = 'del' WHERE u_id = %s"
+    cur = mysql.connection.cursor()
+    cur.execute(sql, (g.usuario['id'],))
+    mysql.connection.commit()
+    cur.close()
+    return True
+
+
+def update_user(mysql, form):
+    sql = '''
+        UPDATE usuario
+        SET u_nome = %s, u_nascimento = %s, u_email = %s
+        WHERE u_id = %s AND u_senha = SHA1(%s)
+    '''
+    cur = mysql.connection.cursor()
+    cur.execute(sql, (
+        form['nome'],
+        form['nascimento'],
+        form['email'],
+        g.usuario['id'],
+        form['senha1'],
+    ))
+    mysql.connection.commit()
+    cur.close()
+    return True
+
+
+def update_password(mysql, form):
+    sql = "UPDATE usuario SET u_senha = SHA1(%s) WHERE u_id = %s AND u_senha = SHA1(%s)"
+    cur = mysql.connection.cursor()
+    cur.execute(sql, (
+        form['senha2'],
+        g.usuario['id'],
+        form['senha1'],
+    ))
+    mysql.connection.commit()
+    cur.close()
+    return True
+
+
+def get_user_data(mysql):
+    sql = "SELECT * FROM usuario WHERE u_id = %s AND u_status = 'on'"
+    cur = mysql.connection.cursor()
+    cur.execute(sql, (g.usuario['id'],))
+    row = cur.fetchone()
+    cur.close()
+    return row

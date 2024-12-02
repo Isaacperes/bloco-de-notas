@@ -15,16 +15,16 @@
 
         <header>
             <a href="/">
-                <i class="fa-solid fa-cubes fa-fw"></i>
+                <img src="/static/img/bloco-de-notas.png" alt="logotipo">
                 <h1>Bloco de Notas</h1>
             </a>
         </header>
 
         {% if usuario %}
         <nav>
-            <a href="/" title="Listar meus trecos"><i
+            <a href="/" title="Listar minhas notas"><i
                     class="fa-regular fa-rectangle-list fa-fw"></i><span>Listar</span></a>
-            <a href="/novo" title="Cadastrar novo treco"><i class="fa-solid fa-plus fa-fw"></i><span>Novo</span></a>
+            <a href="/novo" title="Cadastrar nova nota"><i class="fa-solid fa-plus fa-fw"></i><span>Novo</span></a>
             <a href="/perfil" id="navUsuario"><i class="fa-solid fa-user"></i><span>Olá {{ usuario.pnome }}!</span></a>
         </nav>
         {% endif %}

@@ -23,7 +23,7 @@ def mod_perfil(mysql):
 
     # Dados, variáveis e valores a serem passados para o template HTML
     pagina = {
-        'titulo': 'CRUDTrecos - Novo Treco',
+        'titulo': 'Bloco de Notas - Nova nota',
         'usuario': g.usuario,
     }
 

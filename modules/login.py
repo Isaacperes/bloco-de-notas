@@ -50,7 +50,7 @@ def mod_login(mysql):
             # print('\n\n\n JSON:', cookie_json, '\n\n\n')
 
             # Prepara a página de destino → index
-            resposta = make_response(redirect(url_for('index')))
+            resposta = make_response(redirect(url_for('home')))
 
             # Cria o cookie
             resposta.set_cookie(
