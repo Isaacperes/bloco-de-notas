@@ -11,6 +11,7 @@ from modules.login import mod_login
 from modules.logout import mod_logout
 from modules.novasenha import mod_novasenha
 from modules.novo import mod_novo
+from modules.page_not_found import mod_page_not_found
 from modules.perfil import mod_perfil
 
 app = Flask(__name__)
@@ -135,6 +136,10 @@ def cadastro():
 @app.route('/novasenha')
 def novasenha():
     return mod_novasenha (mysql=mysql)
+
+@app.route('/page_not_found')
+def page_not_found():
+    return mod_page_not_found (mysql=mysql)
 
 if __name__ == '__main__':
     app.run(debug=True)
