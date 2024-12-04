@@ -4,10 +4,12 @@ from flask_mysqldb import MySQL
 
 from modules.apaga import mod_apaga
 from modules.apagausuario import mod_apagausuario
+from modules.cadastro import mod_cadastro
 from modules.edita import mod_edita
 from modules.editaperfil import mod_editaperfil
 from modules.login import mod_login
 from modules.logout import mod_logout
+from modules.novasenha import mod_novasenha
 from modules.novo import mod_novo
 from modules.perfil import mod_perfil
 
@@ -125,6 +127,14 @@ def apaga(id):
 @app.route('/edita/<id>', methods=['GET', 'POST'])
 def edita(id):
     return mod_edita(mysql=mysql, id=id)
+
+@app.route('/cadastro')
+def cadastro():
+    return mod_cadastro (mysql=mysql)
+
+@app.route('/novasenha')
+def novasenha():
+    return mod_novasenha (mysql=mysql)
 
 if __name__ == '__main__':
     app.run(debug=True)
